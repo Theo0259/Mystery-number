@@ -13,7 +13,8 @@ function numberTest() {
 
   if (userInput === number) {
     output = `<p><h4>Gagné ! 🙂</h4> <br> Le numéro mystère était : ${number}</p>`;
-    replayBtn.classList.remove("d-none"); // Affiche le bouton en supprimant la classe d-none
+    replayBtn.classList.remove("d-none");
+    document.getElementById("btn").disabled = true;
   } else if (userInput > number) {
     output = `<p>${userInput} ? ... c'est ➖</p>`;
   } else if (userInput < number) {
