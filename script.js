@@ -5,6 +5,7 @@ let number = Math.floor(Math.random() * 10) + 1;
 let attempts = 0;
 
 console.log(number);
+
 function numberTest() {
   const userInput = parseInt(document.getElementById("userInput").value);
   let output = "";
@@ -22,23 +23,15 @@ function numberTest() {
   }
 
   attempts++;
+  let attemptText = attempts === 1 ? "1er essai" : `${attempts}ème essai`;
+  result.innerHTML += `<hr><p><h5>${attemptText}</h5></p><br>`;
+  setTimeout(function () {
+    result.innerHTML += output;
+  }, 1000);
 
-  if (attempts === 1) {
-    result.innerHTML += `<hr><p><h5>1er essai</h5></p>`;
+  if (attempts >= 3 && userInput !== number) {
     setTimeout(function () {
-      result.innerHTML += output;
-    }, 1000);
-  } else if (attempts === 2) {
-    result.innerHTML += `<hr><p><h5>2ème essai</h5></p><br>`;
-    setTimeout(function () {
-      result.innerHTML += output;
-    }, 1000);
-  } else if (attempts === 3 && userInput === number) {
-    result.innerHTML += `<hr><p><h5>3ème essai</h5></p><br>`;
-  } else {
-    result.innerHTML += `<hr><p><h5>3ème essai</h5></p><br>`;
-    setTimeout(function () {
-      result.innerHTML += `<p><h4>Perdu...☹️</h4></p><br>${output}<br><p>Le numéro mystère était : ${number}</p>`;
+      result.innerHTML += `<p><h4>Perdu...☹️</h4></p><p>Le numéro mystère était : ${number}</p>`;
       btn.disabled = true;
       replayBtn.classList.remove("d-none");
     }, 1000);
@@ -46,7 +39,7 @@ function numberTest() {
 }
 
 replayBtn.addEventListener("click", function () {
-  location.reload(); // Recharge la page pour recommencer le jeu
+  location.reload();
 });
 
 btn.addEventListener("click", numberTest);
