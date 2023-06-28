@@ -14,6 +14,14 @@ function numberTest() {
   let attemptText = attempts === 1 ? "1er essai" : `${attempts}ème essai`;
   clearTimeout(timeoutId);
 
+  if (isNaN(userInput) || userInput < 1 || userInput > 10) {
+    output = "<hr><h5>Veuillez saisir un nombre valide entre 1 et 10.</h5>";
+    result.innerHTML += output;
+    btn.disabled = true;
+    replayBtn.classList.remove("d-none");
+    return; // Sortie de la fonction si la saisie n'est pas valide
+  }
+
   if (userInput === number) {
     timeoutId = setTimeout(function () {
       output = `<p><h4>Gagné ! 🙂</h4> <br> Le numéro mystère était : ${number}</p>`;
